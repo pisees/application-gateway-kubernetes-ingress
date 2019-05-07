@@ -22,7 +22,7 @@ steps:
 - script: |
     wget https://dl.google.com/go/go1.12.4.linux-amd64.tar.gz
     tar -xvf go1.12.4.linux-amd64.tar.gz
-    mv go /usr/local
+    sudo mv go /usr/local
   displayName: 'Install Go 1.12'
 
 - script: |
