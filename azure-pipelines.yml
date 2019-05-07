@@ -11,12 +11,20 @@ pool:
 
 variables:
   GOBIN:  '$(GOPATH)/bin' # Go binaries path
-  GOROOT: '/usr/local/go1.11' # Go installation path
+  GOROOT: '/usr/local/go' # Go installation path
   GOPATH: '$(system.defaultWorkingDirectory)/gopath' # Go workspace path
-  GO111MODULE: 'on'
   modulePath: '$(GOPATH)/src/github.com/$(build.repository.name)' # Path to the module's code
+  GOOS: 'linux'
+  GO111MODULE: 'on'
+  GO_PROJ: 'github.com/Azure/$(build.repository.name)'
 
 steps:
+- script: |
+    wget https://dl.google.com/go/go1.12.4.linux-amd64.tar.gz
+    tar -xvf go1.12.4.linux-amd64.tar.gz
+    mv go /usr/local
+  displayName: 'Install Go 1.12'
+
 - script: |
     mkdir -p '$(GOBIN)'
     mkdir -p '$(GOPATH)/pkg'
@@ -27,6 +35,17 @@ steps:
     echo '##vso[task.prependpath]$(GOBIN)'
     echo '##vso[task.prependpath]$(GOROOT)/bin'
   displayName: 'Set up the Go workspace'
+
+- script: |
+    go get -u golang.org/x/lint/golint
+    golint $(find . -type f -name '*.go' -not -path "./vendor/*")
+  workingDirectory: '$(modulePath)'
+  displayName: 'Go lint'
+
+- script: |
+    go vet -v ./...
+  workingDirectory: '$(modulePath)'
+  displayName: 'Go vet'
 
 - script: |
     go version
