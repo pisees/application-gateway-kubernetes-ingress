@@ -9,8 +9,6 @@ trigger:
 pool:
   vmImage: 'ubuntu-latest'
 
-container: 
-
 variables:
   GOBIN:  '$(GOPATH)/bin' # Go binaries path
   GOROOT: '/usr/local/go' # Go installation path
