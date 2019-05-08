@@ -65,10 +65,12 @@ func makeSecretStoreTestFixture(toAdd *map[string]interface{}) k8scontext.Secret
 
 func makeConfigBuilderTestFixture(certs *map[string]interface{}) appGwConfigBuilder {
 	cb := appGwConfigBuilder{
+
 		appGwConfig:            makeAppGwyConfigTestFixture(),
 		serviceBackendPairMap:  make(map[backendIdentifier]serviceBackendPortPair),
 		backendHTTPSettingsMap: make(map[backendIdentifier]*network.ApplicationGatewayBackendHTTPSettings),
 		backendPoolMap:         make(map[backendIdentifier]*network.ApplicationGatewayBackendAddressPool),
+
 		k8sContext: &k8scontext.Context{
 			Caches: &k8scontext.CacheCollection{
 				Secret: cache.NewStore(func(obj interface{}) (string, error) {
