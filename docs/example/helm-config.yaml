@@ -6,7 +6,7 @@
 appgw:
     subscriptionId: 043577d4-85e8-481d-950d-f5077ec9c066
     resourceGroup: jdsrg
-    name: appgwContrIdentityed40
+    name: applicationgatewayed40
 
 ################################################################################
 # Specify which kubernetes namespace the ingress controller will watch
