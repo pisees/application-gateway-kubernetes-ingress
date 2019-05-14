@@ -34,4 +34,4 @@ rbac:
     enabled: false
 
 aksClusterConfiguration:
-    apiServerAddress: <aks-api-server-address>
+    apiServerAddress: aks-83cf6bf7.hcp.centralus.azmk8s.io
