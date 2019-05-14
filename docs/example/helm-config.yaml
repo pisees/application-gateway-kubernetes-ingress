@@ -4,16 +4,16 @@
 # Specify which application gateway the ingress controller will manage
 #
 appgw:
-    subscriptionId: <subscriptionId>
-    resourceGroup: <resourceGroupName>
-    name: <applicationGatewayName>
+    subscriptionId: 043577d4-85e8-481d-950d-f5077ec9c066
+    resourceGroup: jdsrg
+    name: appgwContrIdentityed40
 
 ################################################################################
 # Specify which kubernetes namespace the ingress controller will watch
 # Default value is "default"
 #
 # kubernetes:
-#   watchNamespace: <namespace>
+#   watchNamespace: default
 
 ################################################################################
 # Specify the authentication with Azure Resource Manager
@@ -27,8 +27,8 @@ appgw:
 #   secretKey: ServicePrincipal.json
 armAuth:
     type: aadPodIdentity
-    identityResourceID: <identityResourceId>
-    identityClientID:  <identityClientId>
+    identityResourceID: /subscriptions/043577d4-85e8-481d-950d-f5077ec9c066/resourcegroups/jdsrg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/appgwContrIdentityed40
+    identityClientID:  413f8790-2051-4117-afd2-5ff95ee33448
 
 rbac:
     enabled: false
